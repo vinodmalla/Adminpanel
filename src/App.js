@@ -16,6 +16,8 @@ import ClientLogos from './components/ClientLogos';
 import Logos from './components/Logos';
 import Clientreviewform from './components/Clientreviewform';
 import Clentreviews from './components/Clentreviews';
+import IsightForm from './components/IsightForm'
+import Insights from './components/Insights';
 function App() {
   return (
     <Authprovider>
@@ -83,7 +85,16 @@ export const approuter = createBrowserRouter([
         path:"/clientreview",
         element:<Clentreviews />
         
+      },
+      {
+        path:"/insightform",
+        element:<IsightForm/>
+      },
+      {
+        path:"/insights",
+        element:<Insights />
       }
+
     ]
   }
 ]);

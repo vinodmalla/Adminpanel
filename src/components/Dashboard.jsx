@@ -38,6 +38,7 @@ function Dashboard() {
   const [caseStudiescount, setCaseStudiescount] = useState(0);
   const [logos,setLogos]=useState(0)
   const [client,setClient]=useState(0)
+  const [insights,setInsights]=useState(0)
 
   const location = useLocation();
 
@@ -47,6 +48,7 @@ function Dashboard() {
   const BASE_URL3 = "https://6933d2894090fe3bf01e1697.mockapi.io/Jobs";
   const BASE_URL4="https://6935881efa8e704dafbe1e86.mockapi.io/logos";
    const BASE_URL5="https://6935881efa8e704dafbe1e86.mockapi.io/clientrevies";
+    const BASE_URL6="https://694416237dd335f4c35f3edc.mockapi.io/Insightsform"
   const fetchJobsCount = async () => {
     try {
       const response = await fetch(BASE_URL);
@@ -55,12 +57,15 @@ function Dashboard() {
       const response3 = await fetch(BASE_URL3);
       const response4=await fetch(BASE_URL4)
       const response5=await fetch(BASE_URL5)
+      const response6=await fetch(BASE_URL6);
+      const data6=await response6.json()
       const data5=await response5.json();
       const data4=await response4.json();
       const data3 = await response3.json();
       const data2 = await response2.json();
       const data1 = await response1.json();
       const data = await response.json();
+      setInsights(data6.length)
       setClient(data5.length)
       setLogos(data4.length)
       setApplicantscount(data.length);
@@ -227,6 +232,13 @@ function Dashboard() {
         icon={FaFileAlt}
         accent="text-rose-500"
           /> </Link>
+        <Link to="/insights">  <DashboardCard
+        title="Insights"
+        count={insights}
+        icon={FaFileAlt}
+        accent="text-rose-500"
+          /> </Link>
+         
         </div>
       </main>
     </div>
