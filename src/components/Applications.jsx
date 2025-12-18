@@ -43,6 +43,18 @@ function Applications() {
       console.error("Error updating application status:", error);
     }
   }
+  function handlefilter(event){
+     const value = event.target.value;
+      if (value === "") {
+      setFilteredApplications(applications);
+      return;
+    }else{
+
+    const filter=applications.filter((application)=>
+    application.status.toLowerCase().includes(value.toLowerCase()))
+    setFilteredApplications(filter)
+}
+  }
 
   useEffect(() => {
     fetchApplications();
@@ -84,6 +96,20 @@ function Applications() {
             <p className="text-sm text-slate-500 mt-1">
               View, filter and manage all job applications.
             </p>
+          </div>
+          <div className='flex flex-row'>
+          <p className='whitespace-nowrap text-xl'> Filter By:  
+          </p>
+           
+             <select onChange={handlefilter}
+                          
+                          className="p-2 ml-4 w-full  bg-slate-50 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
+                        > <option className='hover:bg-red-600' value="">ALL</option>
+                          <option className='hover:bg-red-600' value="pending">Pending</option>
+                          <option className='hover:bg-red-600' value="Selected">Selected</option>
+                          <option className='hover:bg-red-600' value="Rejected">Rejected</option>
+                        </select>
+         
           </div>
 
           <input
